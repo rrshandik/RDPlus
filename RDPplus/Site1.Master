@@ -1,0 +1,234 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="RDPplus.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="datatables/css/dataTables.dataTables.min.css" rel="stylesheet" />
+
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style>
+        /* General page styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: url("/images/bg-main.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        footer {
+            background-color: #f8f9fa; /* Light background color */
+            padding: 1rem; /* Add some padding */
+            text-align: center; /* Center the text */
+            position: relative; /* Ensure it positions relative to the content */
+            bottom: 0; /* Position it at the bottom */
+            width: 100%; /* Full width */
+            text-align: center;
+        }
+
+
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        /* Sidebar styling */
+        .sidebar {
+            height: calc(100vh - 4rem); /* Leaves space for a top margin */
+            width: 250px; /* Fixed width for the sidebar */
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            padding-top: 3.5rem;
+            position: fixed;
+            top: 2rem; /* Floating effect from the top */
+            left: 1rem; /* Floating effect from the left */
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Light shadow for the floating effect */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .sidebar .active {
+            background-color: #A3D977; /* warna */
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+        }
+
+
+
+        /* Content area next to the sidebar */
+        .content-area {
+            margin-left: 250px; /* Matches the sidebar width */
+            padding: 1rem;
+        }
+
+        /* Navbar styling */
+        .top-row {
+            height: 3.5rem;
+            background-color: rgba(0, 0, 0, 0);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1100;
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem;
+        }
+
+        .navbar-toggler {
+            appearance: none;
+            cursor: pointer;
+            width: 3.5rem;
+            height: 2.5rem;
+            color: white;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-toggler:checked {
+            background-color: rgba(225, 246, 183, 0.5);
+        }
+
+        /* Navigation item styles */
+        .nav-item {
+            font-size: 0.9rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-item:first-of-type {
+            padding-top: 1rem;
+        }
+
+        .nav-item:last-of-type {
+            padding-bottom: 1rem;
+        }
+
+        .nav-item .nav-link {
+            color: #000000;
+            background: none;
+            border: none;
+            border-radius: 4px;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            line-height: 3rem;
+            width: 100%;
+            padding-left: 1rem;
+        }
+
+        .nav-item a.active {
+            background-color: rgb(166, 208, 81);
+            color: black;
+        }
+
+        .nav-item .nav-link:hover {
+            background-color: rgb(228, 255, 174);
+            color: black;
+        }
+
+        .bi {
+            display: inline-block;
+            position: relative;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            top: -1px;
+            background-size: cover;
+        }
+        
+        .bi-house {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-house' viewBox='0 0 16 16'%3E%3Cpath d='M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z'/%3E%3C/svg%3E");
+        }
+
+        .bi-people {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-people' viewBox='0 0 16 16'%3E%3Cpath d='M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4'/%3E%3C/svg%3E");
+        }
+
+        
+
+        .bi-houses {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-houses' viewBox='0 0 16 16'%3E%3Cpath d='M5.793 1a1 1 0 0 1 1.414 0l.647.646a.5.5 0 1 1-.708.708L6.5 1.707 2 6.207V12.5a.5.5 0 0 0 .5.5.5.5 0 0 1 0 1A1.5 1.5 0 0 1 1 12.5V7.207l-.146.147a.5.5 0 0 1-.708-.708zm3 1a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708zm.707.707L5 7.207V13.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5V7.207z'/%3E%3C/svg%3E");
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+
+        
+       
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- Top Navbar -->
+        <div class="top-row ps-3 navbar navbar-dark">
+            <div class="container-fluid">
+                <div class="logo-container">
+                    <img src="/images/pertamina.png" style="max-height: 4rem; margin-top: 18px; margin-left: 15px" alt="Logo">
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <nav class="flex-column">
+                <div class="nav-item px-3">
+                    <a id="navHome" runat="server" class="nav-link" href="~/Home.aspx">
+                        <div class="bi bi-house"></div>
+                        Home
+                    </a>
+                </div>
+                <div class="nav-item px-3">
+                    <a id="navDataPegawai" runat="server" class="nav-link" href="~/DataPegawai.aspx">
+                        <div class="bi bi-people"></div>
+                        Data Pegawai
+                    </a>
+                </div>
+                <div class="nav-item px-3">
+                    <a id="navRDP" runat="server" class="nav-link" href="~/RDP.aspx">
+                        <div class="bi bi-houses"></div>
+                        RDP
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        
+        <footer>
+            <p>&copy All rights reserved.</p>
+        </footer>
+
+    </form>
+</body>
+</html>
