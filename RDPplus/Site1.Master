@@ -4,43 +4,53 @@
 
 <html>
 <head runat="server">
-    <title></title>
-
+    <title><%= Page.Title %></title>
+    <link rel="icon" type="image/x-icon" href="~/images/favicon.png" />
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="datatables/css/dataTables.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/style/style.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="bootstrap/js/jquery-3.7.1.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="datatables/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-
+     
     <style>
-        /* General page styling */
+
+        
+        @font-face {
+            font-family: "Poppins";
+            src: url('font/Poppins-Regular.ttf')
+        }
+
         body, html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+            margin: 0; 
+            padding: 0; 
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             background-image: url("/images/bg-main.png");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
         }
+
 
         footer {
             background-color: #f8f9fa; /* Light background color */
             padding: 1rem; /* Add some padding */
             text-align: center; /* Center the text */
-            position: relative; /* Ensure it positions relative to the content */
-            bottom: 0; /* Position it at the bottom */
             width: 100%; /* Full width */
-            text-align: center;
+            /* Remove position and bottom properties */
         }
+
 
 
         .container-fluid {
@@ -73,9 +83,10 @@
 
 
         /* Content area next to the sidebar */
-        .content-area {
+       .content-area {
             margin-left: 250px; /* Matches the sidebar width */
             padding: 1rem;
+            height: calc(100vh - 4rem); /* Adjust for navbar height */
         }
 
         /* Navbar styling */
@@ -175,6 +186,97 @@
             padding: 1rem 0;
         }
 
+        /* Hide the default appearance of the dropdown */
+        .styled-dropdown {
+            appearance: none; /* Hide the default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            background-color: #3075BB; /* Default background color */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 16px;
+            text-align: center;
+            cursor: pointer;
+            padding: 0;
+            display: inline-block;
+            outline: none;
+            position: relative;
+            transition: background-color 0.3s, transform 0.3s; /* Added transform transition */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-image: url('/images/house1.png'); /* Use the image as the background */
+            background-size: cover; /* Ensure the image covers the button */
+            background-position: center; /* Center the image */
+            margin-right: 15px; /* Add margin to the right */
+        }
+
+        /* Style for the selected state */
+        .styled-dropdown.selected {
+            background-color: #4A90E2; /* Change background color when selected */
+            transform: scale(0.95); /* Slightly scale down */
+        }
+
+        /* Icon style to add a dropdown arrow manually */
+        .styled-dropdown::after {
+            content: '▼'; /* Custom dropdown arrow */
+            color: white;
+            font-size: 12px;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Adjust dropdown when focused or hovered */
+        .styled-dropdown:hover, 
+        .styled-dropdown:focus {
+            background-color: #255a91;
+        }
+
+        /* Ensure the dropdown list items are not affected by the button styles */
+        .styled-dropdown option {
+            background-color: white;
+            color: black;
+            height: 40px; /* Increase height of the options */
+            padding: 10px; /* Add padding for better spacing */
+        }
+
+        /* Style for the dropdown list container to increase overall height */
+        .styled-dropdown select {
+            height: auto; /* Let it be determined by the content */
+            max-height: 200px; /* Set a max height to avoid overflowing the screen */
+            overflow-y: auto; /* Allow scrolling if needed */
+        }
+
+         .gridview-header {
+             background-color: #f0f0f0; /* Change background color */
+             color: #333; /* Change text color */
+             font-weight: bold; /* Make the font bold */
+             text-align: center; /* Center-align the text */
+         }
+
+         .pagination {
+            display: inline-flex;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination .page-link {
+            padding: 10px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #f1f1f1;
+        }
+
 
         
        
@@ -184,27 +286,47 @@
 <body>
     <form id="form1" runat="server">
 
+
         <!-- Top Navbar -->
-        <div class="top-row ps-3 navbar navbar-dark">
-            <div class="container-fluid">
-                <div class="logo-container">
-                    <img src="/images/pertamina.png" style="max-height: 4rem; margin-top: 18px; margin-left: 15px" alt="Logo">
-                </div>
+
+        <asp:Panel ID="navbar" runat="server" CssClass="top-row d-flex justify-content-between ps-1 navbar navbar-dark">
+
+            <div class="logo-container">
+                <img src="/images/pertamina.png" style="max-height: 4rem; margin-top: 18px; margin-left: 55px; margin-bottom: 30px" alt="Logo">
+            </div>
+
+            <div>
+
+                <asp:DropDownList 
+                    ID="DropDownList1" 
+                    runat="server" 
+                    CssClass="styled-dropdown" 
+                    AutoPostBack="true" 
+                    OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:ListItem Value=""></asp:ListItem>
+                    <asp:ListItem Value="1">Profile</asp:ListItem>
+                    <asp:ListItem Value="2">Logout</asp:ListItem>
+                </asp:DropDownList>
 
             </div>
-        </div>
+        </asp:Panel>
+
+
+
 
         <!-- Sidebar Navigation -->
-        <div class="sidebar">
+        <asp:Panel ID="sidebar" runat="server" CssClass="sidebar">
             <nav class="flex-column">
+                
+                
                 <div class="nav-item px-3">
-                    <a id="navHome" runat="server" class="nav-link" href="~/Home.aspx">
+                    <a id="A2" runat="server" class="nav-link" href="~/homepage">
                         <div class="bi bi-house"></div>
-                        Home
+                        Homepage
                     </a>
                 </div>
                 <div class="nav-item px-3">
-                    <a id="navDataPegawai" runat="server" class="nav-link" href="~/DataPegawai.aspx">
+                    <a id="navDataPegawai" runat="server" class="nav-link" href="~/employee-data">
                         <div class="bi bi-people"></div>
                         Data Pegawai
                     </a>
@@ -216,7 +338,8 @@
                     </a>
                 </div>
             </nav>
-        </div>
+        </asp:Panel>
+        
 
 
         <!-- Main Content Area -->
@@ -224,10 +347,7 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        
-        <footer>
-            <p>&copy All rights reserved.</p>
-        </footer>
+
 
     </form>
 </body>
