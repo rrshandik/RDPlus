@@ -6,6 +6,7 @@
             $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
         });
 
+
         
     </script>
 </asp:Content>
@@ -29,6 +30,19 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <!--  kiri -->
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-end">
+            <p class="badge bg-light text-dark">Sync From SAP</p>
+        </div>
+    </div>
+
+
+
+
     <!-- DataSource -->
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" SelectCommand="SELECT * FROM [employee]"></asp:SqlDataSource>
 
@@ -39,7 +53,7 @@
 
                 <asp:TemplateField HeaderText="Action" SortExpression="Edit">
                     <ItemTemplate>
-                        <a href="#" class="text-decoration-none edit-button" 
+                        <a href="employee-edit?id=<%# Eval("id_employee") %>" class="text-decoration-none edit-button" 
                            data-id='<%# Eval("id_employee") %>' 
                            data-email='<%# Eval("email_employee") %>' 
                            data-name='<%# Eval("name") %>' 
@@ -63,6 +77,10 @@
                 <asp:BoundField DataField="points" HeaderText="Points" SortExpression="points" />
                 <asp:BoundField DataField="phone" HeaderText="Phone" SortExpression="phone" />
                 <asp:BoundField DataField="section" HeaderText="Section" SortExpression="section" />
+                <asp:BoundField DataField="family_status" HeaderText="Family Status" SortExpression="family_status" />
+                <asp:BoundField DataField="assessment_status" HeaderText="Assessment Status" SortExpression="assessment_status" />
+
+
             </Columns>
         </asp:GridView>
     </div>

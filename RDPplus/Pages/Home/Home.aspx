@@ -11,6 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
+    <!-- header -->
     <div class="container mt-4">
         <div class="badge bg-light text-dark mb-2">
             <h1 class="page-title">Dashboard</h1>
@@ -94,6 +95,11 @@
                 </div>
             </a>
         </div>
+    </div>
+
+    <!-- demografi rdp -->
+    <div class="table-container" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin-left: 15px; margin-right: 5px">
+
     </div>
         
     

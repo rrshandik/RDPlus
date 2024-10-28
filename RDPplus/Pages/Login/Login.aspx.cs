@@ -46,7 +46,7 @@ namespace RDPplus.Pages.Login
                 }
                 else
                 {
-                    Response.Write("<script>alert('gaada');</script>"); 
+                    Response.Write("<script>alert('Pengguna tidak ditemukan!');</script>"); 
                 }
             }
             catch (Exception ex)

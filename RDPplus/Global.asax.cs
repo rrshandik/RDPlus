@@ -23,7 +23,20 @@ namespace RDPplus
             // Route to Home.aspx without specifying full path
             routes.MapPageRoute("HomeRoute", "homepage", "~/Pages/Home/Home.aspx");
             routes.MapPageRoute("LoginRoute", "adminLogin", "~/Pages/Login/Login.aspx");
-            routes.MapPageRoute("EmployeeDataRoute", "employee-data", "~/Pages/Employee Data/employee-data.aspx");
+
+            //Employee Data
+            routes.MapPageRoute("EmployeeDataRoute", "employee-data", "~/Pages/Employee-data/employee-data.aspx");
+            routes.MapPageRoute("EmployeeEditRoute", "employee-edit", "~/Pages/Employee-data/employee-edit/employee-edit.aspx");
+
+            //RDP
+            routes.MapPageRoute("RDP-menu", "menu-rdp", "~/Pages/Menu-rdp/menu-rdp.aspx");
+            routes.MapPageRoute("RDP-data", "data-rdp", "~/Pages/Menu-rdp/data-rdp/data-rdp.aspx");
+            routes.MapPageRoute("RDP-edit", "edit-rdp", "~/Pages/Menu-rdp/data-rdp/edit-data-rdp/edit-rdp.aspx");
+            routes.MapPageRoute("RDP-tersedia", "tersedia-rdp", "~/Pages/Menu-rdp/tersedia-rdp/tersedia-rdp.aspx");
+
+
+
+
 
 
             // Add more routes

@@ -39,35 +39,20 @@ namespace RDPplus
             {
                 A2.Attributes["class"] += " active";
             }
+            else if (currentPage.Contains("data-rdp"))
+            {
+                navRDP.Attributes["class"] += " active";
+            }
             else if (currentPage.Contains("employee-data"))
             {
                 navDataPegawai.Attributes["class"] += " active";
             }
-            else if (currentPage.Contains("rdp.aspx"))
+            else if (currentPage.Contains("menu-rdp"))
             {
                 navRDP.Attributes["class"] += " active";
             }
 
-            //try
-            //{
-            //    if (Session["role"].Equals(""))
-            //    {
-            //        navHome.Visible = false;
-            //        navRDP.Visible = false;
-            //        navDataPegawai.Visible = false;
-            //    }
-
-            //    else if (Session["role"].Equals("admin"))
-            //    {
-            //        navHome.Visible = true;
-            //        navRDP.Visible = true;
-            //        navDataPegawai.Visible = true;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
+            
 
         }
 

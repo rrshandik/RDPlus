@@ -38,9 +38,7 @@ namespace RDPplus.Pages.Employee_Data
                     SqlCommand cmd = new SqlCommand("SELECT id_employee, email_employee, name, nopek, PRL, position, points, phone, section FROM employee", con);
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    // No need to set DataSource here since we are using DataSourceID
-                    //GridView1.DataSource = dr; // Remove this line
-                    //GridView1.DataBind(); // Remove this line
+                   
                 }
             }
             catch (Exception ex)
@@ -50,8 +48,9 @@ namespace RDPplus.Pages.Employee_Data
             }
         }
 
+        protected void SqlDataSource1_Selecting(object sender, System.Web.UI.WebControls.SqlDataSourceSelectingEventArgs e)
+        {
 
-        
-
+        }
     }
 }

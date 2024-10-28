@@ -40,6 +40,8 @@
             background-image: url("/images/bg-main.png");
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Tambahkan ini */
+
         }
 
 
@@ -332,7 +334,7 @@
                     </a>
                 </div>
                 <div class="nav-item px-3">
-                    <a id="navRDP" runat="server" class="nav-link" href="~/RDP.aspx">
+                    <a id="navRDP" runat="server" class="nav-link" href="~/menu-rdp">
                         <div class="bi bi-houses"></div>
                         RDP
                     </a>
