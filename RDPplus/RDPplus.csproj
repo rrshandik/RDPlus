@@ -90,6 +90,7 @@
     <Content Include="Pages\Login\SignUp.aspx" />
     <Content Include="Pages\Menu-rdp\data-rdp\data-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\data-rdp\edit-data-rdp\edit-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\menu-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx" />
     <Content Include="style\style.css" />
@@ -142,6 +143,13 @@
     <Compile Include="Pages\Menu-rdp\data-rdp\edit-data-rdp\edit-rdp.aspx.designer.cs">
       <DependentUpon>edit-rdp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx.cs">
+      <DependentUpon>lelang-rdp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx.designer.cs">
+      <DependentUpon>lelang-rdp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Menu-rdp\menu-rdp.aspx.cs">
       <DependentUpon>menu-rdp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,7 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Employee-data\employee-set-not set\" />
-    <Folder Include="Pages\Menu-rdp\lelang-rdp\" />
     <Folder Include="Pages\Menu-rdp\pengembalian-kunci-rdp\" />
     <Folder Include="Pages\Menu-rdp\penunjukkan-rdp\" />
   </ItemGroup>
