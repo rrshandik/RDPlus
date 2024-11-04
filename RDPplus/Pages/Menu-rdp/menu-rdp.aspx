@@ -66,7 +66,7 @@
 
         <!-- Card 5: RDP Tersedia -->
         <div class="col-md-6 mb-4">
-            <a href="tersedia-rdp" class="text-decoration-none">
+            <a href="Pages/Menu-rdp/tersedia-rdp/tersedia-rdp.aspx" class="text-decoration-none">
                 <div class="card h-100 shadow-sm" style="min-height: 200px;">
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <h5 class="card-title text-center text-dark" style="font-weight: bold;">RDP Tersedia</h5>

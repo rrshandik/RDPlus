@@ -47,6 +47,10 @@ namespace RDPplus
             {
                 navDataPegawai.Attributes["class"] += " active";
             }
+            else if (currentPage.Contains("Pages/Home/Home.aspx"))
+            {
+                A2.Attributes["class"] += " active";
+            }
             else if (currentPage.Contains("menu-rdp"))
             {
                 navRDP.Attributes["class"] += " active";

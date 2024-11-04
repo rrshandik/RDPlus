@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <a href="/#" class="text-decoration-none">
+            <a href="Pages/Menu-rdp/tersedia-rdp/tersedia-rdp.aspx" class="text-decoration-none">
                 <div class="card shadow" style="background-color: #A2CE40 ; color: white; border-radius: 15px;">
                     <div class="card-body" style="text-align: left; position: relative;">
 
