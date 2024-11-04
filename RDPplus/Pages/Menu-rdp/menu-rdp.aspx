@@ -54,7 +54,7 @@
         </div>
 
         <!-- Card 5: Laporan Pemilik RDP -->
-        <div class="col-md-6 mb-4">
+       <%-- <div class="col-md-6 mb-4">
             <a href="admin/LaporanPemilik" class="text-decoration-none">
                 <div class="card h-100 shadow-sm" style="min-height: 200px;">
                     <div class="card-body d-flex align-items-center justify-content-center">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div>--%>
 
         <!-- Card 5: RDP Tersedia -->
         <div class="col-md-6 mb-4">

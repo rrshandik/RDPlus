@@ -35,7 +35,7 @@ namespace RDPplus
             // Determine the current page and set the active class
             string currentPage = Request.Path.ToLower();
 
-            if (currentPage.Contains("homepage"))
+            if (currentPage.Contains("home"))
             {
                 A2.Attributes["class"] += " active";
             }
