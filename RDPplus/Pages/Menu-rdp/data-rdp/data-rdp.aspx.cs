@@ -16,6 +16,12 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp
                 LabelCurrentDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy");
 
             }
+
+            if (Session["username"] == null)
+            {
+                // Redirect to the login page if the user is not logged in
+                Response.Redirect("~/adminLogin");
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
