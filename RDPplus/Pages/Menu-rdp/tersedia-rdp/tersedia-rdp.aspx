@@ -7,8 +7,14 @@
 
      <script type="text/javascript">
          $(document).ready(function () {
+             $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
+
+
+             $(".table-container").hide();
+
+             // aksi klik
              $(".card-header").click(function () {
-                 $(this).find(".toggle-icon").toggleClass("fa-chevron-down fa-chevron-up");
+                 $(this).find("img").toggleClass("rotated");
                  $(this).next(".table-container").slideToggle();
              });
 
@@ -99,6 +105,20 @@
              }
          });
      </script>
+
+    <style>
+    
+
+        .card-header img {
+            transition: transform 0.3s ease;
+        }
+
+        .card-header img.rotated {
+            transform: rotate(180deg);
+        }
+
+
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -282,7 +302,7 @@
         </div>
 
         <div class="table-container" style="padding: 20px; border-radius: 10px; margin: 15px;">
-           <asp:GridView ID="GridView2" runat="server" CssClass="table table-striped table-bordered text-decoration-none text-dark" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" UseAccessibleHeader="True">
+           <asp:GridView ID="GridView2" runat="server" CssClass="table table-striped table-bordered text-decoration-none text-dark" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" UseAccessibleHeader="False">
                 <Columns>
                     <asp:BoundField DataField="id_rdp" HeaderText="ID RDP" />
                     <asp:BoundField DataField="no_rdp" HeaderText="No RDP" />
