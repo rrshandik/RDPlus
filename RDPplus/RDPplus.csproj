@@ -92,6 +92,8 @@
     <Content Include="Pages\Menu-rdp\data-rdp\edit-data-rdp\edit-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\menu-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx" />
     <Content Include="style\style.css" />
     <Content Include="Web.config" />
@@ -157,6 +159,20 @@
     <Compile Include="Pages\Menu-rdp\menu-rdp.aspx.designer.cs">
       <DependentUpon>menu-rdp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx.cs">
+      <DependentUpon>pengembalian-kunci-rdp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx.designer.cs">
+      <DependentUpon>pengembalian-kunci-rdp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx.cs">
+      <DependentUpon>penunjukkan-rdp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx.designer.cs">
+      <DependentUpon>penunjukkan-rdp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx.cs">
       <DependentUpon>tersedia-rdp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,8 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Employee-data\employee-set-not set\" />
-    <Folder Include="Pages\Menu-rdp\pengembalian-kunci-rdp\" />
-    <Folder Include="Pages\Menu-rdp\penunjukkan-rdp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
