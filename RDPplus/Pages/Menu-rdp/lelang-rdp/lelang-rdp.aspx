@@ -8,7 +8,7 @@
              }
 
              // Initialize DataTable after table structure is correct
-             $(".table").DataTable();
+             //$(".table").DataTable();
 
              // Hide the table container initially
              $(".table-container").hide();
@@ -99,20 +99,36 @@
     <div class="card mt-3" style="margin-left: 15px; padding: 0px; border: none; border-radius: 15px; overflow: hidden;" >
         <div class="card-header d-flex justify-content-between align-items-center" 
      
+                <asp:SqlDataSource ID="SqlDataSourcePeriodeLelang" runat="server" 
+                    ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" 
+                    SelectCommand="SELECT TOP 1 start_date, end_date FROM periode_lelang order by created_at desc">
+                </asp:SqlDataSource>
             <span style="color: white; font-weight: bold">Gunung Simping</span>
             <div class="d-flex align-items-center">
+                <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
+                <asp:Label ID="lblPeriodeLelang" runat="server" Font-Italic="true"></asp:Label>
                 <span>
-                    <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-right: 10px"/>
+                    <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-left: 10px; margin-right: 10px"/>
                 </span>
             </div>
         </div>
         <div class="table-container" style=" padding: 0px; border-radius: 10px; margin: 15px;">
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" SelectCommand="SELECT [name], [nopek], [id_employee] FROM [employee]"></asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_employee" DataSourceID="SqlDataSource1" CssClass="table table-striped table-bordered text-decoration-none text-dark">
+           <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" SelectCommand="SELECT top 10 [name], [nopek], [id_employee], [points] FROM [employee] order by points desc"></asp:SqlDataSource>
+           <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+                DataKeyNames="id_employee" DataSourceID="SqlDataSource1" 
+                CssClass="table table-striped table-bordered text-decoration-none text-dark"
+                OnRowDataBound="GridView1_RowDataBound">
                 <Columns>
+                    <asp:TemplateField HeaderText="Rank">
+                        <ItemTemplate>
+                            <asp:Label ID="lblRowNumber" runat="server"></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle Width="50px" HorizontalAlign="Center" />
+                    </asp:TemplateField>
                     <asp:BoundField DataField="id_employee" HeaderText="id_employee" ReadOnly="True" InsertVisible="False" SortExpression="id_employee"></asp:BoundField>
                     <asp:BoundField DataField="name" HeaderText="name" SortExpression="name"></asp:BoundField>
                     <asp:BoundField DataField="nopek" HeaderText="nopek" SortExpression="nopek"></asp:BoundField>
+                    <asp:BoundField DataField="points" HeaderText="points" SortExpression="points"></asp:BoundField>
                 </Columns>
             </asp:GridView>
         </div>
@@ -123,17 +139,29 @@
  
             <span style="color: white; font-weight: bold">Donan</span>
             <div class="d-flex align-items-center">
+                <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
+                <asp:Label ID="lblPeriodeLelang2" runat="server" Font-Italic="true"></asp:Label>
                 <span>
-                    <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-right: 10px"/>
+                    <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-left: 10px; margin-right: 10px"/>
                 </span>
             </div>
         </div>
         <div class="table-container" style=" padding: 0px; border-radius: 10px; margin: 15px;">
-            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="id_employee" DataSourceID="SqlDataSource1" CssClass="table table-striped table-bordered text-decoration-none text-dark">
+            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+                DataKeyNames="id_employee" DataSourceID="SqlDataSource1" 
+                CssClass="table table-striped table-bordered text-decoration-none text-dark"
+                OnRowDataBound="GridView2_RowDataBound">
                 <Columns>
+                    <asp:TemplateField HeaderText="Rank">
+                        <ItemTemplate>
+                            <asp:Label ID="lblRowNumber" runat="server"></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle Width="50px" HorizontalAlign="Center" />
+                    </asp:TemplateField>
                     <asp:BoundField DataField="id_employee" HeaderText="id_employee" ReadOnly="True" InsertVisible="False" SortExpression="id_employee"></asp:BoundField>
                     <asp:BoundField DataField="name" HeaderText="name" SortExpression="name"></asp:BoundField>
                     <asp:BoundField DataField="nopek" HeaderText="nopek" SortExpression="nopek"></asp:BoundField>
+                    <asp:BoundField DataField="points" HeaderText="points" SortExpression="points"></asp:BoundField>
                 </Columns>
             </asp:GridView>
            
