@@ -27,6 +27,8 @@ namespace RDPplus.Pages.Menu_rdp.tersedia_rdp
                     // Mengubah teks pada header
                     string periodeLelangText = $" {startDate.ToShortDateString()} - {endDate.ToShortDateString()}";
                     lblPeriodeLelang.Text = periodeLelangText; // Menggunakan label untuk menampilkan
+                    lblPeriodeLelang2.Text = periodeLelangText; // Menggunakan label untuk menampilkan
+
                 }
             }
 

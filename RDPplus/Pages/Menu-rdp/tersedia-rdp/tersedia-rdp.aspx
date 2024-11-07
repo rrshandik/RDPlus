@@ -151,12 +151,12 @@
         </div>
     </div>
 
-    <div class="container" >
+   <%-- <div class="container" >
         <div class="badge bg-light text-dark" style="margin-left: 0px">
 
             <span style="color: black; margin-right: 10px; font-style: italic">Periode Lelang:<asp:Label ID="lblPeriodeLelang" runat="server"></asp:Label></span>
         </div>
-    </div>
+    </div>--%>
 
 
     <!-- Modal -->
@@ -232,6 +232,10 @@
              
             <span style="color: white; font-weight: bold">Gunung Simping</span>
             <div class="d-flex align-items-center">
+                <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
+
+                <asp:Label ID="lblPeriodeLelang" runat="server" Font-Italic="true"></asp:Label>
+
                 <span>
                     <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-right: 10px"/>
                 </span>
@@ -295,6 +299,9 @@
      
             <span style="color: white; font-weight: bold">Apartemen</span>
             <div class="d-flex align-items-center">
+                <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
+                <asp:Label ID="lblPeriodeLelang2" runat="server" Font-Italic="true"></asp:Label>
+
                 <span>
                     <img src="/images/arrow-bot.png" style="height: 12px; width: 20px; margin-bottom: 2px; margin-right: 10px"/>
                 </span>
