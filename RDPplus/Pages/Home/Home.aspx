@@ -6,7 +6,7 @@
            $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
        });
    </script>--%>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
         
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -97,10 +97,152 @@
         </div>
     </div>
 
-    <!-- demografi rdp -->
+   <!-- Demografi RDP -->
     <div class="table-container" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; margin-left: 15px; margin-right: 5px">
-
+        <!-- Chart Row -->
+        <div class="row">
+            <!-- Bar Chart -->
+            <div class="col-md-8 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-white py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Demografi RDP RU IV</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="stackedBarChart" style="height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Pie Chart  -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-white py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">RDP Status Distribution</h6>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart" style="height: 300px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        // Common Chart Options
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        padding: 10, 
+                        usePointStyle: true,
+                        boxWidth: 8,
+                        font: {
+                            size: 11 
+                        }
+                    }
+                }
+            }
+        };
+
+        // Pie Chart - Modified for smaller size
+        const pieChart = new Chart(document.getElementById('pieChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Dihuni', 'Tidak Layak', 'Tersedia'],
+                datasets: [{
+                    data: [812, 185, 61],
+                    backgroundColor: ['#F6C80C', '#E7242B', '#A2CE40'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                ...commonOptions,
+                cutout: '65%',
+                plugins: {
+                    ...commonOptions.plugins,
+                    legend: {
+                        ...commonOptions.plugins.legend,
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        //  Bar Chart 
+        const stackedBarChart = new Chart(document.getElementById('stackedBarChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Apartemen', 'Donan', 'Gunung Simping', 'Sidanegara', 'Tegal Kamulyan'],
+                datasets: [
+                    {
+                        label: 'Tersedia',
+                        data: [17, 8, 15, 1, 20],
+                        backgroundColor: '#A2CE40'
+                    },
+                    {
+                        label: 'Dihuni',
+                        data: [195, 90, 224, 181, 101],
+                        backgroundColor: '#3075BB'
+                    },
+                    {
+                        label: 'Kosong',
+                        data: [45, 20, 50, 25, 45],
+                        backgroundColor: '#E7242B'
+                    },
+                    {
+                        label: 'Peminjaman',
+                        data: [11, 20, 26, 10, 30],
+                        backgroundColor: '#C0C0C0'
+                    },
+                    {
+                        label: 'Alih Fungsi',
+                        data: [5, 3, 8, 1, 0],
+                        backgroundColor: '#FFD700'
+                    },
+                    {
+                        label: 'Guest House',
+                        data: [1, 0, 0, 0, 0],
+                        backgroundColor: '#DEB887'
+                    }
+                ]
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: {
+                        stacked: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 11 
+                            }
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        grid: {
+                            drawBorder: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 11 
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    </script>
         
     
 
