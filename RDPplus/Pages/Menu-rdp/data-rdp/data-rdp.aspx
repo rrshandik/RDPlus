@@ -223,5 +223,16 @@
             position: relative; /* Ensures the header stays on top */
             z-index: 2;
         }
-    </style>
+
+        .table {
+            background-color: #EDFFC3;
+        }
+
+        .table thead th {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+            </style>
 </asp:Content>

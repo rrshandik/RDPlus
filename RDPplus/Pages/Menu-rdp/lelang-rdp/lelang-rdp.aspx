@@ -2,15 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script type="text/javascript">
          $(document).ready(function () {
-             // Apply the `thead` wrapping only if not already done, for each table separately
              $(".table").each(function () {
                  if ($(this).find("thead").length === 0) {
                      $(this).prepend($("<thead></thead>").append($(this).find("tr:first")));
                  }
              });
-
-             // Initialize DataTable after table structure is correct
-             //$(".table").DataTable();
 
              // Hide the table container initially
              $(".table-container").hide();
@@ -56,7 +52,7 @@
             </div>
         </div>
         <div class="col-md-6 d-flex justify-content-end ms-auto">
-            <button type="button" class="btn-penyerahan-kunci" 
+            <button type="button" class="btn-penyerahan-kunci" onclick="window.location.href='/penyerahan-rdp';"
                 style="border-radius: 15px; margin: 10px; width: 300px; height: 40px; color: white; border: none">
                 Penyerahan Kunci
             </button>

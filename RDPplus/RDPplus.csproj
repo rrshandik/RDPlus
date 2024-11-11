@@ -95,6 +95,7 @@
     <Content Include="Pages\Menu-rdp\menu-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\penyerahan-kunci-rdp\penyerahan-kunci.aspx" />
     <Content Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx" />
     <Content Include="style\style.css" />
     <Content Include="Web.config" />
@@ -180,6 +181,13 @@
     </Compile>
     <Compile Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx.designer.cs">
       <DependentUpon>penunjukkan-rdp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\penyerahan-kunci-rdp\penyerahan-kunci.aspx.cs">
+      <DependentUpon>penyerahan-kunci.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\penyerahan-kunci-rdp\penyerahan-kunci.aspx.designer.cs">
+      <DependentUpon>penyerahan-kunci.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx.cs">
       <DependentUpon>tersedia-rdp.aspx</DependentUpon>

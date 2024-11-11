@@ -35,6 +35,8 @@ namespace RDPplus
             routes.MapPageRoute("RDP-tersedia", "tersedia-rdp", "~/Pages/Menu-rdp/tersedia-rdp/tersedia-rdp.aspx");
             routes.MapPageRoute("RDP-lelang", "lelang-rdp", "~/Pages/Menu-rdp/lelang-rdp/lelang-rdp.aspx");
             routes.MapPageRoute("RDP-detail", "detail-rdp", "~/Pages/Menu-rdp/detail-rdp/detail-rdp.aspx");
+            routes.MapPageRoute("RDP-penyerahan", "penyerahan-rdp", "~/Pages/Menu-rdp/penyerahan-kunci-rdp/penyerahan-kunci.aspx");
+
 
 
 
