@@ -648,7 +648,7 @@
             padding: 10px; 
             border-top-right-radius: 15px; 
             border-top-left-radius: 15px;
-            position: relative; /* Ensures the header stays on top */
+            position: relative; 
             z-index: 2;
         }
         .btn-lelang {

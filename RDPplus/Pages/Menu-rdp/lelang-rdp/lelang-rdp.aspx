@@ -2,10 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script type="text/javascript">
          $(document).ready(function () {
-             // Find the first row and wrap it inside thead, if not already present
-             if ($(".table thead").length === 0) {
-                 $(".table").prepend($("<thead></thead>").append($(".table tr:first")));
-             }
+             // Apply the `thead` wrapping only if not already done, for each table separately
+             $(".table").each(function () {
+                 if ($(this).find("thead").length === 0) {
+                     $(this).prepend($("<thead></thead>").append($(this).find("tr:first")));
+                 }
+             });
 
              // Initialize DataTable after table structure is correct
              //$(".table").DataTable();
@@ -19,8 +21,7 @@
                  $(this).next(".table-container").slideToggle();
              });
          });
-
-     </script>
+    </script>
 
      <style>
      
@@ -54,48 +55,15 @@
                 <asp:Label ID="LabelCurrentDateTime" runat="server"></asp:Label>
             </div>
         </div>
-        <div class="col-md-6 d-flex justify-content-end">
-    <!-- Button Penyerahan Kunci -->
-            <button class="btn btn-danger ms-auto " style ="border-radius: 15px; width: 300px; font-size: 18px">
+        <div class="col-md-6 d-flex justify-content-end ms-auto">
+            <button type="button" class="btn-penyerahan-kunci" 
+                style="border-radius: 15px; margin: 10px; width: 300px; height: 40px; color: white; border: none">
                 Penyerahan Kunci
             </button>
         </div>
     </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="durasiLelangModal" tabindex="-1" aria-labelledby="durasiLelangModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="durasiLelangModalLabel">Atur Periode Lelang</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="durasiLelangForm">
-                        <div class="mb-3">
-                            <label for="startDate" class="form-label">Tanggal Mulai</label>
-                            <input type="text" class="form-control datepicker" id="startDate" required autocomplete="off">
-                            <div class="invalid-feedback" id="startDateFeedback">
-                                Harap pilih tanggal mulai
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="endDate" class="form-label">Tanggal Selesai</label>
-                            <input type="text" class="form-control datepicker" id="endDate" required autocomplete="off">
-                            <div class="invalid-feedback" id="endDateFeedback">
-                                Harap pilih tanggal selesai
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" id="saveDurasiBtn">Simpan</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    <!-- gunung simping gs 403 -->
     <div class="card mt-3" style="margin-left: 15px; padding: 0px; border: none; border-radius: 15px; overflow: hidden;" >
         <div class="card-header d-flex justify-content-between align-items-center" 
      
@@ -103,7 +71,7 @@
                     ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" 
                     SelectCommand="SELECT TOP 1 start_date, end_date FROM periode_lelang order by created_at desc">
                 </asp:SqlDataSource>
-            <span style="color: white; font-weight: bold">Gunung Simping</span>
+            <span style="color: white; font-weight: bold">Gunung Simping GS. 403</span>
             <div class="d-flex align-items-center">
                 <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
                 <asp:Label ID="lblPeriodeLelang" runat="server" Font-Italic="true"></asp:Label>
@@ -137,7 +105,7 @@
     <div class="card mt-3" style="margin-left: 15px; padding: 0px; border: none; border-radius: 15px; overflow: hidden;" >
         <div class="card-header d-flex justify-content-between align-items-center" 
  
-            <span style="color: white; font-weight: bold">Donan</span>
+            <span style="color: white; font-weight: bold">Apartemen A211</span>
             <div class="d-flex align-items-center">
                 <span style="color: #FFF16E; font-weight: lighter; margin-right: 10px; font-style: italic">Periode Lelang:</span>
                 <asp:Label ID="lblPeriodeLelang2" runat="server" Font-Italic="true"></asp:Label>
@@ -146,11 +114,12 @@
                 </span>
             </div>
         </div>
+
         <div class="table-container" style=" padding: 0px; border-radius: 10px; margin: 15px;">
-            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
-                DataKeyNames="id_employee" DataSourceID="SqlDataSource1" 
-                CssClass="table table-striped table-bordered text-decoration-none text-dark"
-                OnRowDataBound="GridView2_RowDataBound">
+           <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:RDPlusConnectionString %>" SelectCommand="SELECT top 10 [name], [nopek], [id_employee], [points] FROM [employee] order by points desc"></asp:SqlDataSource>
+           <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+                DataKeyNames="id_employee" DataSourceID="SqlDataSource2" 
+                CssClass="table table-striped table-bordered text-decoration-none text-dark" OnRowDataBound="GridView2_RowDataBound">
                 <Columns>
                     <asp:TemplateField HeaderText="Rank">
                         <ItemTemplate>
@@ -164,7 +133,6 @@
                     <asp:BoundField DataField="points" HeaderText="points" SortExpression="points"></asp:BoundField>
                 </Columns>
             </asp:GridView>
-           
         </div>
     </div>
 
@@ -175,8 +143,15 @@
             padding: 10px; 
             border-top-right-radius: 15px; 
             border-top-left-radius: 15px;
-            position: relative; /* Ensures the header stays on top */
+            position: relative; 
             z-index: 2;
+        }
+        .table {
+            background-color: #EDFFC3;
+        }
+
+        .btn-penyerahan-kunci {
+            background-color: #E7242B;
         }
     </style>
 </asp:Content>
