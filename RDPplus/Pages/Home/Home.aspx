@@ -32,7 +32,7 @@
     <!--info rdp-->
     <div class="row text-center mb-4" style="margin-left: 3px">
         <div class="col-md-3">
-            <a href="../Menu-rdp/data-rdp/data-rdp.aspx" class="text-decoration-none">
+            <a href="/data-rdp" class="text-decoration-none">
                 <div class="card shadow" style="background-color: #3075BB; color: white; border-radius: 15px; position: relative;">
                     <div class="card-body" style="text-align: left; position: relative;">
 

@@ -33,6 +33,12 @@ namespace RDPplus.Pages.Menu_rdp.lelang_rdp
                 }
 
             }
+
+            if (Session["username"] == null)
+            {
+                // Redirect to the login page if the user is not logged in
+                Response.Redirect("~/adminLogin");
+            }
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)

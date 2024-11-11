@@ -90,6 +90,7 @@
     <Content Include="Pages\Login\SignUp.aspx" />
     <Content Include="Pages\Menu-rdp\data-rdp\data-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\data-rdp\edit-data-rdp\edit-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\detail-rdp\detail-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\menu-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx" />
@@ -144,6 +145,13 @@
     </Compile>
     <Compile Include="Pages\Menu-rdp\data-rdp\edit-data-rdp\edit-rdp.aspx.designer.cs">
       <DependentUpon>edit-rdp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\detail-rdp\detail-rdp.aspx.cs">
+      <DependentUpon>detail-rdp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Menu-rdp\detail-rdp\detail-rdp.aspx.designer.cs">
+      <DependentUpon>detail-rdp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx.cs">
       <DependentUpon>lelang-rdp.aspx</DependentUpon>

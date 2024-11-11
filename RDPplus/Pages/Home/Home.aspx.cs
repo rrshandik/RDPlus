@@ -22,6 +22,12 @@ namespace RDPplus
                 //GridView1.DataBind();
                 LabelCurrentDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy");
             }
+
+            if (Session["username"] == null)
+            {
+                // Redirect to the login page if the user is not logged in
+                Response.Redirect("~/adminLogin");
+            }
         }
         
         

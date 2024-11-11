@@ -51,6 +51,69 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
         protected global::System.Web.UI.WebControls.Label LabelIDValue;
 
         /// <summary>
+        /// RadioButtonListStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonListStatus;
+
+        /// <summary>
+        /// DropDownListKondisi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListKondisi;
+
+        /// <summary>
+        /// DropDownListNopek control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListNopek;
+
+        /// <summary>
+        /// LabelEmployeeName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelEmployeeName;
+
+        /// <summary>
+        /// TextBoxKeterangan2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxKeterangan2;
+
+        /// <summary>
+        /// TextBoxCluster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxCluster;
+
+        /// <summary>
+        /// DropDownListResidence control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListResidence;
+
+        /// <summary>
         /// LabelRT control.
         /// </summary>
         /// <remarks>
