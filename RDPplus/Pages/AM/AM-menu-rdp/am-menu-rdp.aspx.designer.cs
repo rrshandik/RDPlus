@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RDPplus
+namespace RDPplus.Pages.AM.AM_menu_rdp
 {
 
 
-    public partial class WebForm1
+    public partial class am_menu_rdp
     {
 
         /// <summary>
@@ -22,14 +22,5 @@ namespace RDPplus
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelCurrentDateTime;
-
-        /// <summary>
-        /// data_rdp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor data_rdp;
     }
 }

@@ -14,21 +14,27 @@ namespace RDPplus
             if (!IsPostBack)
             {
                 if (Session["role"] == "admin")
-                {https://localhost:44356/Site1.Master.cs
-                    DropDownList1.Visible = true; // Show logout button
-                    //BtnLogout.Visible = true;
+                {
+                   
+                    DropDownList1.Visible = true; 
+                    navDataPegawai.Visible = true; 
+                    navRDP.Visible = true; 
+                    navRDP.HRef = "~/menu-rdp"; 
                 }
-
-
+                else if (Session["role"] == "assetmanager")
+                {
+                    DropDownList1.Visible = true; 
+                    navDataPegawai.Visible = false; 
+                    navRDP.Visible = true;
+                    navRDP.HRef = "~/am-menu-rdp"; 
+                }
                 else
                 {
+                    // Hide all navigation for non-authenticated users
                     navDataPegawai.Visible = false;
                     navRDP.Visible = false;
                     DropDownList1.Visible = false;
-    
                     A2.Visible = false;
-                    //sidebar.Visible = false;
-                    //navbar.Visible = false;
                 }
             }
 

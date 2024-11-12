@@ -41,6 +41,11 @@ namespace RDPplus
             routes.MapPageRoute("laporan-rdp", "laporan-rdp", "~/Pages/Laporan-pemilik/laporan-pemilik.aspx");
 
 
+            //AM
+            //rdp
+            routes.MapPageRoute("AM-RDP-menu", "am-menu-rdp", "~/Pages/AM/AM-menu-rdp/am-menu-rdp.aspx");
+            routes.MapPageRoute("AM-RDP-data", "am-data-rdp", "~/Pages/AM/AM-menu-rdp/am-data-rdp/am-data-rdp.aspx");
+
 
 
 

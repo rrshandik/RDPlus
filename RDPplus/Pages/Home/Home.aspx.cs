@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using RDPplus.Pages.Menu_rdp.data_rdp;
 
 namespace RDPplus
 {
@@ -27,6 +28,15 @@ namespace RDPplus
             {
                 // Redirect to the login page if the user is not logged in
                 Response.Redirect("~/adminLogin");
+            }
+            if (Session["role"] == "admin")
+            {
+                data_rdp.HRef = "~/data-rdp";
+            }
+            else if (Session["role"] == "assetmanager")
+            {
+                data_rdp.HRef = "~/am-data-rdp";
+
             }
         }
         

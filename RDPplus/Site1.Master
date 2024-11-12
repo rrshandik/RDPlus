@@ -339,7 +339,7 @@
                     </a>
                 </div>
                 <div class="nav-item px-3">
-                    <a id="navRDP" runat="server" class="nav-link" href="~/menu-rdp">
+                    <a id="navRDP" runat="server" class="nav-link">
                         <div class="bi bi-houses"></div>
                         RDP
                     </a>

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,7 +7,17 @@ namespace RDPplus.Pages.Login
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+        // Hardcoded usernames, passwords, and roles
+        private const string AdminUsername = "admin";
+        private const string AdminPassword = "admin123";
+        private const string AdminEmail = "admin@example.com";
+        private const string AdminRole = "admin";
+
+        private const string AssetManagerUsername = "assetmanager";
+        private const string AssetManagerPassword = "asset123";
+        private const string AssetManagerEmail = "assetmanager@example.com";
+        private const string AssetManagerRole = "assetmanager";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -21,39 +26,36 @@ namespace RDPplus.Pages.Login
         //login button
         protected void Button1_Click(object sender, EventArgs e)
         {
-            //Response.Write("<script>alert('testing');</script>");
             try
             {
-                SqlConnection con = new SqlConnection(strcon);
-                if (con.State == ConnectionState.Closed)
+                // Check if the entered username and password match either user
+                if (TextBox1.Text.Trim() == AdminUsername && TextBox2.Text.Trim() == AdminPassword)
                 {
-                    con.Open();
+                    // Admin login
+                    Response.Write("<script>alert('Login Success!');</script>");
+                    Session["username"] = AdminUsername;
+                    Session["email"] = AdminEmail;
+                    Session["role"] = AdminRole;
+                    Response.Redirect("~/Pages/Home/Home.aspx");
                 }
-
-                SqlCommand cmd = new SqlCommand("select * from admin_login where email='" + TextBox1.Text.Trim() + "' AND password='" + TextBox2.Text.Trim() + "'", con);
-                SqlDataReader dr = cmd.ExecuteReader();
-                if(dr.HasRows)
+                else if (TextBox1.Text.Trim() == AssetManagerUsername && TextBox2.Text.Trim() == AssetManagerPassword)
                 {
-                    while(dr.Read())
-                    {
-                        Response.Write("<script>alert('Login Success!');</script>");
-                        Session["username"] = dr.GetValue(3).ToString();
-                        Session["email"] = dr.GetValue(1).ToString();
-                        Session["role"] = "admin";
-                        Response.Redirect("~/Pages/Home/Home.aspx");
-
-                    }
+                    // Asset Manager login
+                    Response.Write("<script>alert('Login Success!');</script>");
+                    Session["username"] = AssetManagerUsername;
+                    Session["email"] = AssetManagerEmail;
+                    Session["role"] = AssetManagerRole;
+                    Response.Redirect("~/Pages/Home/Home.aspx");
                 }
                 else
                 {
-                    Response.Write("<script>alert('Pengguna tidak ditemukan!');</script>"); 
+                    Response.Write("<script>alert('Pengguna tidak ditemukan!');</script>");
                 }
             }
             catch (Exception ex)
             {
-
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
-
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
