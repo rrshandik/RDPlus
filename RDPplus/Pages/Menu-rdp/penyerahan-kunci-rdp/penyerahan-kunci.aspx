@@ -63,7 +63,7 @@
 
              Swal.fire({
                  title: 'Confirm Winner',
-                 text: `Are you sure you want to declare ${selectedEmployee} as the winner for ${cardId}?`,
+                 text: `Are you sure you want to declare ${selectedEmployee} as the winner?`,
                  icon: 'question',
                  showCancelButton: true,
                  confirmButtonColor: '#A6D051',
@@ -79,7 +79,7 @@
                      // Show success message
                      Swal.fire(
                          'Success!',
-                         `${selectedEmployee} has been declared as the winner for ${cardId}!`,
+                         `${selectedEmployee} has been declared as the winner!`,
                          'success'
                      );
                  }

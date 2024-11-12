@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -102,7 +103,10 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                 string id_rdp = Request.QueryString["id"];
                 using (SqlConnection conn = new SqlConnection(strcon))
                 {
-                    string query = @"SELECT * FROM rdp WHERE id_rdp = @id_rdp";
+                    string query = @"SELECT r.*, e.nopek 
+                                   FROM rdp r 
+                                   LEFT JOIN employee e ON r.id_employee = e.id_employee 
+                                   WHERE r.id_rdp = @id_rdp";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@id_rdp", id_rdp);
 
@@ -119,6 +123,12 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                         DropDownListResidence.SelectedValue = reader["id_residence"].ToString();
                         TextBoxRT.Text = reader["rt"].ToString();
                         TextBoxRW.Text = reader["rw"].ToString();
+                        string nopek = reader["nopek"].ToString();
+                        if (!string.IsNullOrEmpty(nopek))
+                        {
+                            DropDownListNopek.SelectedValue = nopek;
+                            LoadEmployeeName(nopek);
+                        }
                     }
                 }
             }
@@ -131,13 +141,13 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                 SqlCommand cmd = new SqlCommand(query, conn);
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-
+                
                 DropDownListNopek.Items.Clear();
                 DropDownListNopek.Items.Add(new ListItem("-- Select NOPEK --", ""));
                 while (reader.Read())
                 {
                     ListItem item = new ListItem(
-                        reader["nopek"].ToString(),
+                        $"{reader["nopek"]} - {reader["name"]}",
                         reader["nopek"].ToString()
                     );
                     DropDownListNopek.Items.Add(item);
@@ -147,14 +157,17 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
         protected void DropDownListNopek_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedNopek = DropDownListNopek.SelectedValue;
-
-            if (!string.IsNullOrEmpty(selectedNopek))
+            LoadEmployeeName(selectedNopek);
+        }
+        private void LoadEmployeeName(string nopek)
+        {
+            if (!string.IsNullOrEmpty(nopek))
             {
                 using (SqlConnection conn = new SqlConnection(strcon))
                 {
                     string query = "SELECT name FROM employee WHERE nopek = @nopek";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@nopek", selectedNopek);
+                    cmd.Parameters.AddWithValue("@nopek", nopek);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -173,22 +186,81 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                 LabelEmployeeName.Text = "Select NOPEK to view name";
             }
         }
+        private int? GetEmployeeIdFromNopek(string nopek)
+        {
+            if (string.IsNullOrEmpty(nopek))
+                return null;
+
+            using (SqlConnection conn = new SqlConnection(strcon))
+            {
+                string query = "SELECT id_employee FROM employee WHERE nopek = @nopek";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nopek", nopek);
+
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : (int?)null;
+            }
+        }
+
+        private bool IsNopekAlreadyAssigned(string nopek, string currentRdpId)
+        {
+            using (SqlConnection conn = new SqlConnection(strcon))
+            {
+                string query = @"SELECT COUNT(*) 
+                           FROM rdp r 
+                           JOIN employee e ON r.id_employee = e.id_employee 
+                           WHERE e.nopek = @nopek 
+                           AND r.id_rdp != @currentRdpId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@nopek", nopek);
+                cmd.Parameters.AddWithValue("@currentRdpId", currentRdpId);
+
+                conn.Open();
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0;
+            }
+        }
 
         protected void ButtonSave_Click(object sender, EventArgs e)
         {
             try
             {
+                string selectedNopek = DropDownListNopek.SelectedValue;
+
+                // Skip validation if no NOPEK is selected
+                if (!string.IsNullOrEmpty(selectedNopek))
+                {
+                    // Check if NOPEK is already assigned to another RDP
+                    if (IsNopekAlreadyAssigned(selectedNopek, LabelIDValue.Text))
+                    {
+                        LabelMessage.Text = $"Error: NOPEK {selectedNopek} is already assigned to another RDP record!";
+                        LabelMessage.ForeColor = Color.Red;
+
+                        // Add JavaScript alert
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                            $"alert('NOPEK {selectedNopek} is already assigned to another RDP record!');", true);
+
+                        return; // Stop the save process
+                    }
+                }
+
+                // Get the employee ID from the selected NOPEK
+                int? employeeId = GetEmployeeIdFromNopek(selectedNopek);
+
                 using (SqlConnection conn = new SqlConnection(strcon))
                 {
                     string query = @"UPDATE rdp 
-                                   SET id_status = @id_status,
-                                       id_keterangan1 = @id_keterangan1,
-                                       keterangan2 = @keterangan2,
-                                       cluster = @cluster,
-                                       id_residence = @id_residence,
-                                       rt = @rt,
-                                       rw = @rw
-                                   WHERE id_rdp = @id_rdp";
+                               SET id_status = @id_status,
+                                   id_keterangan1 = @id_keterangan1,
+                                   keterangan2 = @keterangan2,
+                                   cluster = @cluster,
+                                   id_employee = @id_employee,
+                                   id_residence = @id_residence,
+                                   rt = @rt,
+                                   rw = @rw
+                               WHERE id_rdp = @id_rdp";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@id_rdp", LabelIDValue.Text);
@@ -197,6 +269,7 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                     cmd.Parameters.AddWithValue("@keterangan2", TextBoxKeterangan2.Text);
                     cmd.Parameters.AddWithValue("@cluster", TextBoxCluster.Text);
                     cmd.Parameters.AddWithValue("@id_residence", DropDownListResidence.SelectedValue);
+                    cmd.Parameters.AddWithValue("@id_employee", (object)employeeId ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@rt", TextBoxRT.Text);
                     cmd.Parameters.AddWithValue("@rw", TextBoxRW.Text);
 
@@ -204,14 +277,21 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                     cmd.ExecuteNonQuery();
 
                     LabelMessage.Text = "Data updated successfully!";
-                    LabelMessage.ForeColor = System.Drawing.Color.Green;
-                    Response.Redirect("data-rdp");
+                    LabelMessage.ForeColor = Color.Green;
+
+                    // Add success message alert
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                        "alert('Data updated successfully!'); window.location='data-rdp';", true);
                 }
             }
             catch (Exception ex)
             {
                 LabelMessage.Text = "Error updating data: " + ex.Message;
-                LabelMessage.ForeColor = System.Drawing.Color.Red;
+                LabelMessage.ForeColor = Color.Red;
+
+                // Add error alert
+                ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
+                    $"alert('Error updating data: {ex.Message}');", true);
             }
         }
     }
