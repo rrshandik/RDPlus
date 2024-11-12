@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="data-rdp.aspx.cs" Inherits="RDPplus.Pages.Menu_rdp.data_rdp.data_rdp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
@@ -17,7 +20,16 @@
     </script>
 
     <style>
-        
+        /* Your existing styles */
+        .card-header {
+            cursor: pointer; 
+            background-color: #358DC7; 
+            padding: 10px; 
+            border-top-right-radius: 15px; 
+            border-top-left-radius: 15px;
+            position: relative; 
+            z-index: 2;
+        }
 
         .card-header img {
             transition: transform 0.3s ease;
@@ -25,6 +37,15 @@
 
         .card-header img.rotated {
             transform: rotate(180deg);
+        }
+
+        /* Updated DataTables styles with higher specificity */
+        .dataTables_wrapper .dataTable tbody tr.odd {
+            background-color: #EDFFC3 !important; /* Light red */
+        }
+
+        .dataTables_wrapper .dataTable tbody tr.even {
+            background-color: #E5F4C1 !important; /* Light green */
         }
 
 
@@ -72,15 +93,15 @@
                 rdp.cluster,
                 employee.name AS employee,
                 employee.nopek AS nopek,
-                residence.residence AS hunian,
+                keterangan1.keterangan1 AS keterangan1,
                 status.nama_status AS status,
-                rdp.keterangan2 as keterangan
+                rdp.keterangan2 as keterangan2
             FROM 
                 [RDPlus].[dbo].[rdp] rdp
             JOIN 
                 [RDPlus].[dbo].[area] area ON rdp.id_area = area.id_area
             JOIN 
-                [RDPlus].[dbo].[residence] residence ON rdp.id_residence = residence.id_residence
+                [RDPlus].[dbo].[keterangan1] keterangan1 ON keterangan1.id_ket1 = rdp.id_keterangan1
             JOIN 
                 [RDPlus].[dbo].[status] status ON rdp.id_status = status.id_status
             LEFT JOIN
@@ -102,7 +123,11 @@
         </div>
         <div class="table-container" style=" padding: 0px; border-radius: 10px; margin: 15px;">
 
-            <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" CssClass="table table-striped table-bordered text-decoration-none text-dark" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <asp:GridView ID="GridView1" runat="server" 
+                DataSourceID="SqlDataSource1" 
+                CssClass="table table-bordered text-decoration-none text-dark" 
+                OnSelectedIndexChanged="GridView1_SelectedIndexChanged" 
+                OnRowDataBound="GridView1_RowDataBound">
                <Columns>
                     <asp:TemplateField HeaderText="Action" SortExpression="Edit">
                         <ItemTemplate>
@@ -230,29 +255,5 @@
             </asp:GridView>
         </div>
     </div>
-
-
-    <!-- styling-->
-    <style>
-        .card-header {
-            cursor: pointer; 
-            background-color: #358DC7; 
-            padding: 10px; 
-            border-top-right-radius: 15px; 
-            border-top-left-radius: 15px;
-            position: relative; /* Ensures the header stays on top */
-            z-index: 2;
-        }
-
-        .table {
-            background-color: #EDFFC3;
-        }
-
-        .table thead th {
-            background-color: black;
-            color: white;
-            font-weight: bold;
-            text-align: center;
-        }
-            </style>
+    
 </asp:Content>

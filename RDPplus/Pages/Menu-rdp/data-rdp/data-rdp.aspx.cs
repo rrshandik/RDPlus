@@ -33,5 +33,24 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp
         {
 
         }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string keterangan1 = DataBinder.Eval(e.Row.DataItem, "keterangan1")?.ToString();
+                if (keterangan1 != null && keterangan1 != "Layak")
+                {
+                    // Apply color to each cell instead of just the row
+                    foreach (TableCell cell in e.Row.Cells)
+                    {
+                        cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFE3E4");
+                    }
+
+                    // Also set the CSS class for consistent styling
+                    e.Row.CssClass = "not-layak-row";
+                }
+            }
+        }
     }
 }
