@@ -92,7 +92,8 @@
             <asp:GridView ID="GridView1" runat="server" 
                 CssClass="table table-striped table-bordered text-decoration-none text-dark" 
                 AutoGenerateColumns="False" 
-                UseAccessibleHeader="True">
+                UseAccessibleHeader="True"
+                OnRowDataBound="GridView1_RowDataBound">
                 <Columns>
                     <asp:TemplateField HeaderText="No">
                         <ItemTemplate>

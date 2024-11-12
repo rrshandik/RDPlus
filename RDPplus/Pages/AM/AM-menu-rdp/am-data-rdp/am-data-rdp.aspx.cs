@@ -77,6 +77,20 @@ namespace RDPplus.Pages.AM.AM_menu_rdp.am_data_rdp
             GridView4.DataBind();
         }
 
-        
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string kondisi = DataBinder.Eval(e.Row.DataItem, "kondisi")?.ToString();
+
+                if (kondisi != "Baik")
+                {
+                    // This will color the entire row
+                    e.Row.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFE3E4");
+                }
+            }
+        }
+
+
     }
 }
