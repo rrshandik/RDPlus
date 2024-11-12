@@ -44,7 +44,7 @@
 
         <!-- Card 4: Kunci RDP -->
         <div class="col-md-6 mb-4">
-            <a href="/kuncirdp" class="text-decoration-none">
+            <a href="penyerahan-rdp" class="text-decoration-none">
                 <div class="card h-100 shadow-sm" style="min-height: 200px;">
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <h5 class="card-title text-center text-dark" style="font-weight: bold;">Kunci RDP</h5>
@@ -53,16 +53,16 @@
             </a>
         </div>
 
-        <!-- Card 5: Laporan Pemilik RDP -->
-       <%-- <div class="col-md-6 mb-4">
-            <a href="admin/LaporanPemilik" class="text-decoration-none">
+<!-- Card 5: Laporan Pemilik RDP -->
+       <div class="col-md-6 mb-4">
+            <a href="laporan-rdp" class="text-decoration-none">
                 <div class="card h-100 shadow-sm" style="min-height: 200px;">
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <h5 class="card-title text-center text-dark" style="font-weight: bold;">Laporan Pemilik RDP</h5>
                     </div>
                 </div>
             </a>
-        </div>--%>
+        </div>
 
         <!-- Card 5: RDP Tersedia -->
         <div class="col-md-6 mb-4">

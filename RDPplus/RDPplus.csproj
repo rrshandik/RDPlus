@@ -86,6 +86,7 @@
     <Content Include="images\pertamina.png" />
     <Content Include="Pages\Employee-data\employee-data.aspx" />
     <Content Include="Pages\Employee-data\employee-edit\employee-edit.aspx" />
+    <Content Include="Pages\Laporan-pemilik\laporan-pemilik.aspx" />
     <Content Include="Pages\Login\Login.aspx" />
     <Content Include="Pages\Login\SignUp.aspx" />
     <Content Include="Pages\Menu-rdp\data-rdp\data-rdp.aspx" />
@@ -118,6 +119,13 @@
     </Compile>
     <Compile Include="Pages\Employee-data\employee-edit\employee-edit.aspx.designer.cs">
       <DependentUpon>employee-edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Laporan-pemilik\laporan-pemilik.aspx.cs">
+      <DependentUpon>laporan-pemilik.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Laporan-pemilik\laporan-pemilik.aspx.designer.cs">
+      <DependentUpon>laporan-pemilik.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

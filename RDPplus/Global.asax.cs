@@ -37,6 +37,10 @@ namespace RDPplus
             routes.MapPageRoute("RDP-detail", "detail-rdp", "~/Pages/Menu-rdp/detail-rdp/detail-rdp.aspx");
             routes.MapPageRoute("RDP-penyerahan", "penyerahan-rdp", "~/Pages/Menu-rdp/penyerahan-kunci-rdp/penyerahan-kunci.aspx");
 
+            //Laporan Pemilik RDP
+            routes.MapPageRoute("laporan-rdp", "laporan-rdp", "~/Pages/Laporan-pemilik/laporan-pemilik.aspx");
+
+
 
 
 
