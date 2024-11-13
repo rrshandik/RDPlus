@@ -96,7 +96,7 @@
     <Content Include="Pages\Menu-rdp\detail-rdp\detail-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\lelang-rdp\lelang-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\menu-rdp.aspx" />
-    <Content Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx" />
+    <Content Include="Pages\Menu-rdp\data-kunci\data-kunci.aspx" />
     <Content Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx" />
     <Content Include="Pages\Menu-rdp\penyerahan-kunci-rdp\penyerahan-kunci.aspx" />
     <Content Include="Pages\Menu-rdp\tersedia-rdp\tersedia-rdp.aspx" />
@@ -192,12 +192,12 @@
     <Compile Include="Pages\Menu-rdp\menu-rdp.aspx.designer.cs">
       <DependentUpon>menu-rdp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx.cs">
-      <DependentUpon>pengembalian-kunci-rdp.aspx</DependentUpon>
+    <Compile Include="Pages\Menu-rdp\data-kunci\data-kunci.aspx.cs">
+      <DependentUpon>data-kunci.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Menu-rdp\pengembalian-kunci-rdp\pengembalian-kunci-rdp.aspx.designer.cs">
-      <DependentUpon>pengembalian-kunci-rdp.aspx</DependentUpon>
+    <Compile Include="Pages\Menu-rdp\data-kunci\data-kunci.aspx.designer.cs">
+      <DependentUpon>data-kunci.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu-rdp\penunjukkan-rdp\penunjukkan-rdp.aspx.cs">
       <DependentUpon>penunjukkan-rdp.aspx</DependentUpon>

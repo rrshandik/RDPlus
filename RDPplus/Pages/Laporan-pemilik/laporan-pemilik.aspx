@@ -1,5 +1,33 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="laporan-pemilik.aspx.cs" Inherits="RDPplus.Pages.Laporan_pemilik.laporan_pemilik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
+
+    });
+    </script>
+
+    <style>
+        .dataTables_wrapper .dataTable tbody tr.odd {
+            background-color: #EDFFC3 !important; 
+        }
+
+        .dataTables_wrapper .dataTable tbody tr.even {
+            background-color: #E5F4C1 !important; 
+        }
+        .dataTables_wrapper .dataTable thead th {
+            background-color: black !important; 
+            color: white !important;
+        }
+        .table {
+            border-radius: 15px;
+        }
+
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Header -->
@@ -22,7 +50,7 @@
 
     <div class="table-container" 
          style="background-color: #f8f9fa; 
-                padding: 0px; 
+                padding: 20px; 
                 border-radius: 15px; 
                 margin-left: 10px;
                 position: relative;
@@ -79,18 +107,4 @@
        </asp:GridView>
         
     </div>
-
-    <style>
-        .table {
-            background-color: #EDFFC3;
-            border-radius: 15px
-        }
-
-        .table-container .table thead tr th {
-            background-color: black !important;
-            color: white !important;
-            font-weight: bold;
-            text-align: center;
-        }
-    </style>
 </asp:Content>

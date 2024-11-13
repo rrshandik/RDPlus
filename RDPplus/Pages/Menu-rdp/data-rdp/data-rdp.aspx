@@ -39,13 +39,16 @@
             transform: rotate(180deg);
         }
 
-        /* Updated DataTables styles with higher specificity */
         .dataTables_wrapper .dataTable tbody tr.odd {
-            background-color: #EDFFC3 !important; /* Light red */
+            background-color: #EDFFC3 !important; 
         }
 
         .dataTables_wrapper .dataTable tbody tr.even {
-            background-color: #E5F4C1 !important; /* Light green */
+            background-color: #E5F4C1 !important; 
+        }
+        .dataTables_wrapper .dataTable thead th {
+            background-color: black !important; 
+            color: white !important;
         }
 
 
