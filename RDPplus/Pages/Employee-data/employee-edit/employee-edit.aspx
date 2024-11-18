@@ -139,7 +139,7 @@
                     <!-- SMK Contribution -->
                     <div class="form-group">
                         <asp:Label ID="labelKontribusi" runat="server" CssClass="form-label" Text="SMK (Kontribusi)"></asp:Label>
-                        <asp:TextBox ID="TextBoxKontribusi" runat="server" CssClass="form-control" placeholder="Enter SMK contribution"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxKontribusi" runat="server" CssClass="form-control" placeholder="Input SMK contribution"></asp:TextBox>
                     </div>
                 </div>
             </div>
