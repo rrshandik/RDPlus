@@ -38,8 +38,6 @@ namespace RDPplus.Pages.Menu_rdp.tersedia_rdp
                 lblPeriodeLelang2.Text = periodeLelangText;
                 lblPeriodeLelang3.Text = periodeLelangText;
                 lblPeriodeLelang4.Text = periodeLelangText;
-
-
             }
         }
 

@@ -32,7 +32,7 @@ namespace RDPplus.Pages.Employee_Data.employee_edit
                 using (SqlConnection con = new SqlConnection(strcon))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT email_employee, name FROM employee WHERE id_employee = @id", con);
+                    SqlCommand cmd = new SqlCommand("SELECT email_employee, name, family_status, kontribusi FROM employee WHERE id_employee = @id", con);
                     cmd.Parameters.AddWithValue("@id", id);
 
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -41,6 +41,8 @@ namespace RDPplus.Pages.Employee_Data.employee_edit
                         LabelIDValue.Text = id.ToString();
                         TextBoxEmail.Text = dr["email_employee"].ToString();
                         TextBoxName.Text = dr["name"].ToString();
+                        TextBoxFamily.Text = dr["family_status"].ToString();
+                        TextBoxKontribusi.Text = dr["kontribusi"].ToString();
                     }
                     else
                     {
@@ -62,14 +64,29 @@ namespace RDPplus.Pages.Employee_Data.employee_edit
                 using (SqlConnection con = new SqlConnection(strcon))
                 {
                     con.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE employee SET email_employee = @Email, name = @Name WHERE id_employee = @id", con);
+                    SqlCommand cmd = new SqlCommand("UPDATE employee SET email_employee = @Email, name = @Name, family_status = @family_status, kontribusi = @Kontribusi, assessment_status = 'set' WHERE id_employee = @id", con);
                     cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text);
                     cmd.Parameters.AddWithValue("@Name", TextBoxName.Text);
+                    cmd.Parameters.AddWithValue("@family_status", TextBoxFamily.Text);
+                    cmd.Parameters.AddWithValue("@Kontribusi", TextBoxKontribusi.Text);
                     cmd.Parameters.AddWithValue("@id", Convert.ToInt32(LabelIDValue.Text));
 
                     cmd.ExecuteNonQuery();
                     Response.Redirect("employee-data");
                 }
+            }
+            catch (Exception ex)
+            {
+                LabelMessage.Text = "Error: " + ex.Message;
+            }
+
+        }
+        protected void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                Response.Redirect("employee-data");
             }
             catch (Exception ex)
             {

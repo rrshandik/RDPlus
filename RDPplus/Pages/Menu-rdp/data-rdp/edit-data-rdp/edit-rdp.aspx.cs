@@ -17,7 +17,7 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
         {
             if (!IsPostBack)
             {
-                LabelCurrentDateTime.Text = DateTime.Now.ToString("dddd, dd mm yyyy");
+                LabelCurrentDateTime.Text = DateTime.Now.ToString("dddd, dd MMMM yyyy");
                 LoadStatus();
                 LoadKondisi();
                 LoadResidence();
@@ -293,6 +293,20 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alertMessage",
                     $"alert('Error updating data: {ex.Message}');", true);
             }
+        }
+
+        protected void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                Response.Redirect("data-rdp");
+            }
+            catch (Exception ex)
+            {
+                LabelMessage.Text = "Error: " + ex.Message;
+            }
+
         }
     }
 }

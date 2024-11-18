@@ -13,6 +13,7 @@ namespace RDPplus
         {
             if (!IsPostBack)
             {
+
                 if (Session["role"] == "admin")
                 {
                    

@@ -87,6 +87,42 @@ namespace RDPplus.Pages.Employee_Data.employee_edit
         protected global::System.Web.UI.WebControls.TextBox TextBoxName;
 
         /// <summary>
+        /// labelFamily control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelFamily;
+
+        /// <summary>
+        /// TextBoxFamily control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFamily;
+
+        /// <summary>
+        /// labelKontribusi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelKontribusi;
+
+        /// <summary>
+        /// TextBoxKontribusi control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxKontribusi;
+
+        /// <summary>
         /// ButtonSave control.
         /// </summary>
         /// <remarks>
@@ -94,5 +130,14 @@ namespace RDPplus.Pages.Employee_Data.employee_edit
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonSave;
+
+        /// <summary>
+        /// ButtonCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonCancel;
     }
 }

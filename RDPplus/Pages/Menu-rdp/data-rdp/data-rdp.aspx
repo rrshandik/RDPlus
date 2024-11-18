@@ -50,21 +50,34 @@
             background-color: black !important; 
             color: white !important;
         }
-
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        .page-header {
+            background-color: #f8f9fa;
+            padding: 0.5rem;
+            display: inline-flex;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            margin-left: 1rem;
+        }
 
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Header -->
-    <div class="container mt-4">
-        <div class="badge bg-light text-dark mb-2">
-            <h1 class="page-title">Data RDP</h1>
-        </div>
+
+    <div class="page-header">
+        <h1 class="page-title">Data RDP</h1>
     </div>
 
     <div class="row mb-3" style="margin-left: 3px">
         <div class="col-md-6">
-            <div class="badge bg-light text-dark mt-2">
+            <div class="date-badge">
                 <span>
                     <img src="/images/date-icon.png" style="height: 12px; width: 12px; margin-bottom: 2px; margin-right: 10px"/>
                 </span>
