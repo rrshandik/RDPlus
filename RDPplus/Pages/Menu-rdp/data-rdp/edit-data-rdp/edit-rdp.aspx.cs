@@ -120,6 +120,7 @@ namespace RDPplus.Pages.Menu_rdp.data_rdp.edit_data_rdp
                         DropDownListKondisi.SelectedValue = reader["id_keterangan1"].ToString();
                         TextBoxKeterangan2.Text = reader["keterangan2"].ToString();
                         TextBoxCluster.Text = reader["cluster"].ToString();
+                        DropDownListNopek.Text = reader["nopek"].ToString();
                         DropDownListResidence.SelectedValue = reader["id_residence"].ToString();
                         TextBoxRT.Text = reader["rt"].ToString();
                         TextBoxRW.Text = reader["rw"].ToString();
