@@ -6,7 +6,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
+            //$(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
             $("#<%= DropDownListNopek.ClientID %>").select2();
             
 
@@ -41,6 +41,7 @@
         });
     </script>
     <style>
+
         .card-header img {
             transition: transform 0.3s ease;
         }
