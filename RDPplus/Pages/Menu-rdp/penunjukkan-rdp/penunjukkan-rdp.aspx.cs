@@ -117,29 +117,32 @@ namespace RDPplus.Pages.Menu_rdp.penunjukkan_rdp
             string selectedNopek = DropDownListNopek.SelectedValue;
             if (!string.IsNullOrEmpty(selectedNopek))
             {
-
-                // sweet alert success message
+                // sweet alert success message with redirect
                 string script = @"
-            Swal.fire({
-                title: 'Success!',
-                text: 'RDP process initiated for NOPEK: " + selectedNopek + @"',
-                icon: 'success',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#358DC7'
-            });";
+        Swal.fire({
+            title: 'Success!',
+            text: 'RDP process initiated for NOPEK: " + selectedNopek + @"',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#358DC7'
+        }).then((result) => {
+            if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop || result.dismiss === Swal.DismissReason.esc) {
+                window.location.href = 'tersedia-rdp';
+            }
+        });";
                 ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlert", script, true);
             }
             else
             {
                 // Show error message if no NOPEK selected
                 string script = @"
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please select a NOPEK before processing',
-                icon: 'error',
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#358DC7'
-            });";
+        Swal.fire({
+            title: 'Error!',
+            text: 'Please select a NOPEK before processing',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#358DC7'
+        });";
                 ScriptManager.RegisterStartupScript(this, GetType(), "sweetAlert", script, true);
             }
         }

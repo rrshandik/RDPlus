@@ -28,7 +28,7 @@
              });
 
              // Event handler untuk tombol Set Durasi Lelang
-             $("button.btn-light").click(function () {
+             $("button.btn-durasi").click(function () {
                  $("#durasiLelangModal").modal('show');
              });
 
@@ -141,15 +141,14 @@
             </div>
         </div>
         <div class="col-md-6 d-flex justify-content-end">
-            
-            <button class="btn btn-light ms-auto">
-                <span>
-                    <img src="/images/date-icon.png" style="height: 12px; width: 12px; margin-bottom: 2px; margin-right: 10px"/>
-                </span>
+            <button class="btn btn-durasi" style="background-color: #358DC7; color: white; border: none;">
                 Set Durasi Lelang
-
             </button>
+            <a class="btn ms-2" style="background-color: #358DC7; color: white; border: none;" href="/penunjukkan-rdp">
+                Penunjukkan RDP
+            </a>
         </div>
+
     </div>
 
 
