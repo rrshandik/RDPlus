@@ -1,12 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="penunjukkan-rdp.aspx.cs" Inherits="RDPplus.Pages.Menu_rdp.penunjukkan_rdp.penunjukkan_rdp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
-            //$(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
-
+            $(".table").prepend($("<thead></thead>").append($(".table tr:first"))).DataTable();
+            $("#<%= DropDownListNopek.ClientID %>").select2();
+            
 
             $(".table-container").hide();
 
@@ -93,7 +95,46 @@
              color: white;
              font-weight: bold;
          }
+         .select2-container--default .select2-selection--single {
+            height: 38px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 36px;
+            padding-left: 12px;
+            color: #495057;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 36px;
+        }
+        .select2-dropdown {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .select2-search__field {
+            border: 1px solid #ced4da !important;
+            border-radius: 4px !important;
+            padding: 6px 12px !important;
+        }
+        .select2-results__option {
+            padding: 8px 12px;
+        }
+        .select2-results__option--highlighted {
+            background-color: #007bff !important;
+        }
+        .error-message {
+            color: #dc3545;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- header -->
@@ -248,27 +289,7 @@
             </div>
         </asp:Panel>
     </div>
+  
 
-
-    <script>
-        $(document).ready(function () {
-            $("#<%= DropDownListNopek.ClientID %>").select2({
-                theme: 'default',
-                placeholder: '-- Select NOPEK --',
-                allowClear: true,
-                width: '100%',
-                dropdownParent: $('.table-container'),
-                language: {
-                    noResults: function () {
-                        return "No matches found";
-                    }
-                }
-            });
-
-            // Handle the postback
-            $("#<%= DropDownListNopek.ClientID %>").on('change', function() {
-                __doPostBack('<%= DropDownListNopek.UniqueID %>', '');
-            });
-        });
-    </script>
+    
 </asp:Content>
